@@ -1,9 +1,11 @@
 import { Injectable } from "@angular/core";
-import { Board, BoardCell, BoardResponce, Difficulty, SolveResponse, ValidateResponse } from "../models/sudoku.model";
+import { Board, BoardResponce, Difficulty, SolveResponse, ValidateResponse } from "../models/sudoku.model";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable, map } from "rxjs";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class SudokuService {
   private baseUrl = 'https://sugoku.onrender.com';
 
@@ -15,8 +17,8 @@ export class SudokuService {
   }
 
   validateBoard(board: Board): Observable<ValidateResponse> {
-    let params = { params: new HttpParams().append('board', JSON.stringify(board)) }
-    return this.http.post<ValidateResponse>(`${this.baseUrl}/validate`, params);
+    let params = new HttpParams().append('board', JSON.stringify(board))
+    return this.http.post<ValidateResponse>(`${this.baseUrl}/validate1`, params);
   }
 
   solveBoard(board: Board): Observable<SolveResponse> {

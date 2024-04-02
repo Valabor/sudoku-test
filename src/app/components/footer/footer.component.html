@@ -1,0 +1,5 @@
+<div class="button-group">
+  <app-button (click)="sudokuFacade.validateBoard()" [disabled]="(state.isLoading$ | async)">Validate</app-button>
+  <app-button (click)="sudokuFacade.solveBoard()" [disabled]="(state.isLoading$ | async)">Solve</app-button>
+  <app-button (click)="sudokuFacade.resetBoard()" [disabled]="(state.isLoading$ | async)">Reset</app-button>
+</div>

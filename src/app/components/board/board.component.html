@@ -1,0 +1,17 @@
+<div *ngIf="!(state.isLoading$ | async)" class="sudoku-board">
+  @for (
+  rowState of state.boardData$ | async;
+  track rowState;
+  let rowIndex = $index
+  ) {
+  <div class="row">
+    @for(cellValue of rowState;
+    track cellValue;
+    let cellIndex = $index) {
+    <div class="cell">
+      <input class="cell-input" type="number" min="1" max="9" ngModel [disabled]="cellValue.readOnly" [(ngModel)]="cellValue.value">
+    </div>
+    }
+  </div>
+  }
+</div>

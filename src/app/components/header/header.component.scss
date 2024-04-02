@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+}
+
+.generate-game {
+  margin: auto;
+  display: flex;
+  gap: 2rem;
+  align-items: baseline;
+}
+.header-3 {
+  font-size: 1.3rem;
+}
+
+.like-link {
+  cursor: pointer;
+  text-decoration: underline;
+  color:#7b7b7b
+}

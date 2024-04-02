@@ -23,3 +23,8 @@ export type SolveResponse = {
 export type ValidateResponse = {
   status: 'solved' | 'broken';
 };
+
+export type Error = {
+  visible: boolean,
+  message?: string;
+}
