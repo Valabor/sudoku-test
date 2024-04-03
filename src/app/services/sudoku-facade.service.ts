@@ -59,6 +59,7 @@ export class SudokuFacadeService {
         delay(500),
         catchError(() => {
           this.state.isLoading$.next(false);
+          this.state.showError({ visible: true });
           return of(null);
         })
       ).subscribe(data => {

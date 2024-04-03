@@ -1,14 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { HeaderComponent } from './header.component';
-import { SudokuFacadeService } from '../../services/sudoku-facade.secvice';
+import { SudokuFacadeService } from '../../services/sudoku-facade.service';
 import { provideHttpClient } from '@angular/common/http';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
   let sudokuFacadeService: SudokuFacadeService;
+  let mockSudokuFacadeService;
 
   beforeEach(async () => {
+    // mockSudokuFacadeService = jasmine.createSpyObj(['getDataForBoard']);
+    // mockSudokuFacadeService.getCustomer.and.returnValue([]);
     await TestBed.configureTestingModule({
       imports: [HeaderComponent],
       providers: [SudokuFacadeService, provideHttpClient()],
@@ -26,10 +29,17 @@ describe('HeaderComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call the SudokuFacadeService on button click', () => {
-    const spy = spyOn(sudokuFacadeService, 'getDataForBoard').and.callThrough();
+  it('should call the SudokuFacadeService on button click', fakeAsync( () => {
+    fixture.detectChanges();
+   
+    spyOn(component.sudokuFacade, 'getDataForBoard'); //method attached to the click.
+   
     const button = fixture.debugElement.nativeElement.querySelector('.like-link');
     button.click();
-    expect(spy).toHaveBeenCalled();
-  });
+   
+    tick();
+   
+    fixture.detectChanges();
+    expect(component.sudokuFacade.getDataForBoard).toHaveBeenCalled();
+}));
 });

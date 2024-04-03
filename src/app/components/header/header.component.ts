@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { SudokuFacadeService } from '../../services/sudoku-facade.secvice';
+import { SudokuFacadeService } from '../../services/sudoku-facade.service';
 
 @Component({
   selector: 'app-header',

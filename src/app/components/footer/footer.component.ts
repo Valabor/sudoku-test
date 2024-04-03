@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ButtonComponent } from '../button/button.component';
-import { SudokuFacadeService } from '../../services/sudoku-facade.secvice';
+import { SudokuFacadeService } from '../../services/sudoku-facade.service';
 
 @Component({
   selector: 'app-footer',

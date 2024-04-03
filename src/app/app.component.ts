@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SudokuStateService } from './services/sudoku-state.service';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
-import { SudokuFacadeService } from './services/sudoku-facade.secvice';
+import { SudokuFacadeService } from './services/sudoku-facade.service';
 import { BoardComponent } from './components/board/board.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
