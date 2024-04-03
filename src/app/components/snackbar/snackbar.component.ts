@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-snackbar',
@@ -13,16 +13,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, SimpleCha
 })
 export class SnackbarComponent {
   @Input() visible: boolean | undefined = false;
-  @Input() message: string | undefined = 'Something went wrong! Try again later!';
+  @Input() message: string | undefined = '';
 
-  constructor(private cd: ChangeDetectorRef) { }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['visible'].currentValue) {
-      setTimeout(() => {
-        this.visible = false;
-        this.cd.detectChanges();
-      }, 3000);
-    }
-  }
+  constructor() { }
 }

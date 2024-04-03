@@ -30,7 +30,7 @@ describe('SnackbarComponent', () => {
   it('should hide the snackbar after 3 seconds when visible is true', fakeAsync(() => {
     const snackbarElement = fixture.debugElement.query(By.css('#snackbar'));
 
-    sudokuStateService.isError$.next(true);
+    sudokuStateService.showError({visible: true});
 
     tick(3500);
 
@@ -41,7 +41,7 @@ describe('SnackbarComponent', () => {
     const snackbarElement = fixture.debugElement.query(By.css('#snackbar'));
     expect(snackbarElement.nativeElement.classList.contains('show')).toBe(false);
 
-    sudokuStateService.isError$.next(false);
+    sudokuStateService.showError({visible: false});
 
     expect(snackbarElement.nativeElement.classList.contains('show')).toBe(false);
   });

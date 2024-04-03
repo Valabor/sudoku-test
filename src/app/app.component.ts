@@ -1,10 +1,8 @@
-import { Component} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
-import { LoaderComponent } from './components/loader/loader.component';
-import { ButtonComponent } from './components/button/button.component';
 import { SudokuStateService } from './services/sudoku-state.service';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { SudokuFacadeService } from './services/sudoku-facade.secvice';
 import { BoardComponent } from './components/board/board.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -14,22 +12,21 @@ import { FooterComponent } from './components/footer/footer.component';
   standalone: true,
   imports: [
     CommonModule,
-    RouterOutlet,
-    LoaderComponent,
-    ButtonComponent,
     SnackbarComponent,
     HeaderComponent,
     BoardComponent,
     FooterComponent
   ],
-  providers: [SudokuStateService],
+  providers: [SudokuStateService, SudokuFacadeService],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements  OnInit {
   constructor(
-    public state: SudokuStateService
-  ) {
-    this.state.isError$.subscribe();
+    public state: SudokuStateService,
+    public sudokuFacade: SudokuFacadeService
+  ) { }
+  ngOnInit(): void {
+    this.sudokuFacade.getDataForBoard();
   }
 }

@@ -1,13 +1,12 @@
 <div class="content">
   <app-header></app-header>
   <div class="board-wrapper">
-    <app-board></app-board>
-    <app-loader *ngIf="state.isLoading$ | async">Loading...</app-loader>
+    <app-board [board]="state.boardData$ | async" [isLoading]="state.isLoading$ | async"></app-board>
   </div>
 
   <div class="status">{{state.status$}}</div>
 
-  <app-footer></app-footer>
+  <app-footer [isDisabled]="this.state.isLoading$ | async"></app-footer>
 </div>
 
-<app-snackbar [visible]="(state.isError$ | async)?.visible" [message]="(state.isError$ | async)?.message"></app-snackbar>
+<app-snackbar [visible]="(state.isError$ | async)?.visible" [message]="(state.isError$ | async)?.message"></app-snackbar> 

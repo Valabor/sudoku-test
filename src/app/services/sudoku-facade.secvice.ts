@@ -11,12 +11,12 @@ import { SudokuStateService } from './sudoku-state.service';
   providedIn: 'root',
 })
 export class SudokuFacadeService {
+  static instance: SudokuFacadeService;
+
   constructor(
     private sudokuService: SudokuService,
     public state: SudokuStateService
-  ) {
-    this.state.isError$.subscribe();
-  }
+  ) { }
   
   getDataForBoard(difficulty?: Difficulty) {
     this.state.isLoading$.next(true);
@@ -31,7 +31,7 @@ export class SudokuFacadeService {
       delay(500),
       catchError(() => {
         this.state.isLoading$.next(false);
-        this.state.isError$.next({ visible: true });
+        this.state.showError({ visible: true });
         return of([]);
       })
     ).subscribe();
@@ -45,8 +45,8 @@ export class SudokuFacadeService {
       tap(data => this.state.status$ = data.status),
       catchError(() => {
         this.state.isLoading$.next(false);
-        this.state.isError$.next({ visible: true });
-        return of(null);
+        this.state.showError({ visible: true });
+        return of('');
       })
     ).subscribe(() => this.state.isLoading$.next(false));
   }
@@ -65,10 +65,11 @@ export class SudokuFacadeService {
         if (data?.status === 'solved') {
           this.state.boardData$.next(getBoard(data.solution));
         }
+        this.state.isLoading$.next(false);
         this.state.status$ = data?.status
       });
     } else {
-      this.state.isError$.next({visible: true, message: "Please check cells before solving!"});
+      this.state.showError({visible: true, message: "Please check cells before solving!"});
     }
   }
 

@@ -10,9 +10,11 @@ export function isBoardValid(board: BoardCell[][]) {
   let isValid = true;
   board.forEach(row => {
     for (let i = 0; i < row.length; i++) {
-      if (+row[i].value < 1 || +row[i].value > 9) {
-        isValid = false;
-        break;
+      if(row[i]?.value !== '' && row[i].value !== null) {
+        if (+row[i].value < 1 || +row[i].value > 9) {
+          isValid = false;
+          break;
+        }
       }
     }
   })
