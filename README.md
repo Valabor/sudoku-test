@@ -1,5 +1,7 @@
 # Sudoku
 
+You could play this game [online](https://valabor.github.io/sudoku-test/)
+
 ![Sudoku](./src/blob/sudoku.png)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.0.
