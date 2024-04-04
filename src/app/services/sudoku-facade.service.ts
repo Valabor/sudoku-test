@@ -76,5 +76,6 @@ export class SudokuFacadeService {
 
   resetBoard() {
     this.state.boardData$.next(getBoard(this.state.initData$.value));
+    this.state.status$ = undefined;
   }
 }
