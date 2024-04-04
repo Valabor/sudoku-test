@@ -1,37 +1,12 @@
 <div class="content">
-  <div class="generate-game">
-    <span class="header-3">Generate Game:</span>
-    <span class="like-link" (click)="getDataForBoard('easy')">Easy</span>
-    <span class="like-link" (click)="getDataForBoard('medium')">Medium</span>
-    <span class="like-link" (click)="getDataForBoard('hard')">Hard</span>
-    <span class="like-link" (click)="getDataForBoard()">Random</span>
-  </div>
+  <app-header></app-header>
   <div class="board-wrapper">
-    <div *ngIf="!(state.isLoading$ | async)" class="sudoku-board">
-      @for (
-      rowState of state.boardData$ | async;
-      track rowState;
-      let rowIndex = $index
-      ) {
-      <div class="row">
-        @for(cellValue of rowState;
-        track cellValue;
-        let cellIndex = $index) {
-        <div class="cell">
-          <input class="cell-input" type="number" [disabled]="cellValue.readOnly" [(ngModel)]="cellValue.value">
-        </div>
-        }
-      </div>
-      }
-    </div>
-    <app-loader *ngIf="state.isLoading$ | async">Loading...</app-loader>
+    <app-board [board]="state.boardData$ | async" [isLoading]="state.isLoading$ | async"></app-board>
   </div>
 
-  <div class="status">{{status}}</div>
+  <div class="status">{{state.status$}}</div>
 
-  <div class="board-group">
-    <app-button (click)="validateBoard()">Validate</app-button>
-    <app-button (click)="solveBoard()">Solve</app-button>
-    <app-button (click)="resetBoard()">Reset</app-button>
-  </div>
+  <app-footer [isDisabled]="this.state.isLoading$ | async"></app-footer>
 </div>
+
+<app-snackbar [visible]="(state.isError$ | async)?.visible" [message]="(state.isError$ | async)?.message"></app-snackbar> 

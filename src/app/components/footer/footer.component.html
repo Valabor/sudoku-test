@@ -1,0 +1,5 @@
+<div class="button-group">
+  <app-button (click)="sudokuFacade.validateBoard()" [disabled]="isDisabled">Validate</app-button>
+  <app-button (click)="sudokuFacade.solveBoard()" [disabled]="isDisabled">Solve</app-button>
+  <app-button (click)="sudokuFacade.resetBoard()" [disabled]="isDisabled">Reset</app-button>
+</div>
