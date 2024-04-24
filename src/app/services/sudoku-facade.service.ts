@@ -11,7 +11,6 @@ import { SudokuStateService } from './sudoku-state.service';
   providedIn: 'root',
 })
 export class SudokuFacadeService {
-  static instance: SudokuFacadeService;
 
   constructor(
     private sudokuService: SudokuService,

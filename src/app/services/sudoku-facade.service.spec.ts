@@ -37,7 +37,7 @@ describe('SudokuFacadeService', () => {
     stateServiceSpy.isLoading$ = new BehaviorSubject<boolean>(false);
     stateServiceSpy.boardData$ = new BehaviorSubject<BoardCell[][]>([]);
 
-    sudokuServiceSpy.getBoard.and.returnValue(of(mockBoardData).pipe(delay(500)));
+    sudokuServiceSpy.getBoard.and.returnValue(of(mockBoardData));
 
     service.getDataForBoard();
 
